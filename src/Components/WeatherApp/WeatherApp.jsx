@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './WeatherApp.css'
-import search_icon from '../../Assets/search.png'
+{/*All Images used for weather icons*/}
 import clear_icon from '../../Assets/clear.png'
 import cloud_icon from '../../Assets/cloud.png'
 import drizzle_icon from '../../Assets/drizzle.png'
@@ -12,11 +12,14 @@ import humidity_icon from '../../Assets/humidity.png'
 
 const WeatherApp = () => {
 
+
     const api_key = '242352b4c62863a49dc15f75334daabe'; 
     const [wicon, setWicon] = useState(cloud_icon);
 
+    {/*Search function that fetches data from 'Open Weather Map' API and return info */}
     const search = async () => {
         const element = document.getElementsByClassName('cityInput');
+        
         if (element[0].value === '') {
             return 0;
         }
@@ -25,6 +28,7 @@ const WeatherApp = () => {
         let response = await fetch (url); 
         let data = await response.json();
 
+        {/*Catch in case invalid city name is entered */}
         if (data.message === "city not found") {
             alert("City Not Found!")
         }
@@ -39,6 +43,7 @@ const WeatherApp = () => {
         temperature[0].innerHTML = Math.floor(data.main.temp) + '°C';
         location[0].innerHTML = data.name;
 
+        {/*If statements to set the icon depending on weather data, should be refactored to switch satement & include more icons */}
         if (data.weather[0].icon === '01d' || data.weather[0].icon === '01n' ) {
             setWicon(clear_icon);
         } else if (data.weather[0].icon === '02d' || data.weather[0].icon === '02n' ) {
