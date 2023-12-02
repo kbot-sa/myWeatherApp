@@ -84,7 +84,7 @@ const WeatherApp = () => {
                 <div className="element">
                      <img src={humidity_icon} alt="" className="icon" />
                      <div className="data">
-                        <div className="humidity-percentage">64%</div>
+                        <div className="humidity-percentage">68%</div>
                         <div className="text">Humidity</div>
                      </div>
                 </div>
